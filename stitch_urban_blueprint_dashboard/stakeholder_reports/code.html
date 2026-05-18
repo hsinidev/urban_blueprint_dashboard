@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#434653",
+                    "surface-tint": "#2559bd",
+                    "background": "#f9f9f9",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed": "#dae2ff",
+                    "surface-dim": "#dadada",
+                    "outline": "#737784",
+                    "secondary-container": "#e4e2e1",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "primary-container": "#0047ab",
+                    "on-primary-container": "#a5bdff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#bdbebe",
+                    "surface-container-high": "#e8e8e8",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed-dim": "#b1c5ff",
+                    "surface-container-low": "#f3f3f3",
+                    "on-surface": "#1a1c1c",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "on-primary-fixed-variant": "#00419e",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-secondary-fixed-variant": "#474747",
+                    "tertiary-container": "#4b4d4e",
+                    "tertiary": "#353737",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "outline-variant": "#c3c6d5",
+                    "inverse-primary": "#b1c5ff",
+                    "surface-container": "#eeeeee",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary-fixed": "#001946",
+                    "secondary-fixed": "#e4e2e1",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#656464",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-variant": "#e2e2e2",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary": "#00327d",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "border-hairline": "1px",
+                    "grid-gutter": "16px",
+                    "xs": "8px",
+                    "md": "24px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "sm": "16px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "data-sm": ["JetBrains Mono"],
+                    "h1": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "data-lg": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "data-lg": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .blueprint-bg {
+            background-image: radial-gradient(circle, #0047ab 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.05;
+        }
+        .viewfinder-corner {
+            width: 12px;
+            height: 12px;
+            border-color: #0047ab;
+            position: absolute;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed-dim w-full top-0 sticky border-b border-hairline border-outline dark:border-outline-variant z-50">
+<div class="flex justify-between items-center px-sm py-base w-full max-w-full h-16">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<h1 class="font-h1 text-h1 font-bold text-primary dark:text-primary-fixed uppercase tracking-tighter">Urban-Blueprint</h1>
+</div>
+<button class="active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</header>
+<main class="relative">
+<div class="absolute inset-0 blueprint-bg pointer-events-none"></div>
+<!-- Section 1: Live-Site-Cam Video Feed -->
+<section class="p-sm">
+<h2 class="font-label-caps text-label-caps uppercase mb-base text-secondary">Live-Site-Cam Feed</h2>
+<div class="grid grid-cols-1 gap-sm">
+<div class="relative group border border-hairline border-outline overflow-hidden aspect-video bg-black">
+<!-- Viewfinder Brackets -->
+<div class="viewfinder-corner border-t-2 border-l-2 top-2 left-2"></div>
+<div class="viewfinder-corner border-t-2 border-r-2 top-2 right-2"></div>
+<div class="viewfinder-corner border-b-2 border-l-2 bottom-2 left-2"></div>
+<div class="viewfinder-corner border-b-2 border-r-2 bottom-2 right-2"></div>
+<img class="w-full h-full object-cover opacity-80" data-alt="A professional architectural construction site at dusk with cranes and structural steel framing. The scene is captured through a high-definition wide-angle lens with a cool blue and graphite color palette. High-key lighting highlights the precision of the engineering work. The aesthetic is clean, industrial, and highly detailed for an institutional investor audience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo8-q6xg9CfB62IjVDWI0s3vjJn2DQ4OmotBiV5L4mu33E6PqRz0NUSpoOvOlnmayKPfXD6TSBCXPBf_us9vN_QmDro4owqeUPaYlWTwx0FzmZNg_wb0j15kH2laoA9GlprACc_KUNtzvECvARzPmyJcT-0dqisfxBKxPg_YtUgMhN1VrQPiGA2okJfJhHzUIjHU-1qlBM-1CgVp8WMtg-aXeUNW4MZe05nPhm1-bXSSX7OobxO7wOc-9W0ks_HDTMlXDoJ7PDe7I"/>
+<!-- Cam Metadata Overlay -->
+<div class="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-md p-xs flex justify-between items-center border-t border-white/10">
+<div class="flex flex-col">
+<span class="font-data-sm text-data-sm text-white uppercase">Primary NW Elevation</span>
+<span class="font-data-sm text-[8px] text-primary-fixed-dim">REC // 14:22:01 UTC</span>
+</div>
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-white text-sm">cloud</span>
+<span class="font-data-sm text-data-sm text-white">14°C</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Project Status Summary -->
+<section class="px-sm pb-sm">
+<div class="border border-hairline border-outline bg-surface p-sm">
+<h2 class="font-label-caps text-label-caps uppercase mb-sm text-secondary">Project Status: LDN-082</h2>
+<div class="grid grid-cols-2 gap-sm">
+<div class="border-l border-primary pl-xs py-base">
+<span class="font-label-caps text-label-caps block text-secondary uppercase">Budget Auth</span>
+<span class="font-data-lg text-data-lg text-on-surface">£42.8M</span>
+</div>
+<div class="border-l border-primary pl-xs py-base">
+<span class="font-label-caps text-label-caps block text-secondary uppercase">Timeline</span>
+<span class="font-data-lg text-data-lg text-on-surface">62% Comp.</span>
+</div>
+</div>
+<div class="mt-md h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-primary" style="width: 62%;"></div>
+</div>
+</div>
+</section>
+<!-- Section 3: Investor Alerts (Caution Tape Aesthetic) -->
+<section class="px-sm pb-sm">
+<h2 class="font-label-caps text-label-caps uppercase mb-base text-secondary">Milestone Alerts</h2>
+<div class="space-y-base">
+<div class="flex border border-hairline border-outline bg-white">
+<div class="w-1 bg-error"></div>
+<div class="p-sm flex gap-sm items-start">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<span class="font-label-caps text-label-caps text-error block mb-base">CRITICAL DELAY</span>
+<p class="font-body-md text-sm text-on-surface leading-tight">Steel fabrication delivery delayed 48hrs due to logistics bottleneck. Buffer contingency applied.</p>
+</div>
+</div>
+</div>
+<div class="flex border border-hairline border-outline bg-white">
+<div class="w-1 bg-primary"></div>
+<div class="p-sm flex gap-sm items-start">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<span class="font-label-caps text-label-caps text-primary block mb-base">MILESTONE ACHIEVED</span>
+<p class="font-body-md text-sm text-on-surface leading-tight">Level 14 concrete pour finalized. Structural integrity sensor network activated and reporting stable.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Downloadable PDF Reports -->
+<section class="px-sm pb-lg">
+<h2 class="font-label-caps text-label-caps uppercase mb-base text-secondary">Stakeholder Documentation</h2>
+<div class="space-y-0">
+<div class="flex justify-between items-center p-sm border border-hairline border-outline bg-surface hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+<div class="flex flex-col">
+<span class="font-body-md text-sm font-semibold">Q3 Financial Audit</span>
+<span class="font-data-sm text-[10px] text-secondary">PDF • 12.4 MB • 24 OCT</span>
+</div>
+</div>
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">download</span>
+</button>
+</div>
+<div class="flex justify-between items-center p-sm border-x border-b border-hairline border-outline bg-surface hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">monitoring</span>
+<div class="flex flex-col">
+<span class="font-body-md text-sm font-semibold">Site Safety Protocol V2</span>
+<span class="font-data-sm text-[10px] text-secondary">PDF • 4.1 MB • 18 OCT</span>
+</div>
+</div>
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">download</span>
+</button>
+</div>
+<div class="flex justify-between items-center p-sm border-x border-b border-hairline border-outline bg-surface hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">map</span>
+<div class="flex flex-col">
+<span class="font-body-md text-sm font-semibold">Zoning Approval Docs</span>
+<span class="font-data-sm text-[10px] text-secondary">PDF • 28.9 MB • 02 OCT</span>
+</div>
+</div>
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">download</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface dark:bg-surface-dim px-xs pb-safe border-t border-hairline border-outline dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined">view_in_ar</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Site Twin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Finance</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-none p-xs border border-primary transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Reports</span>
+</button>
+</nav>
+</body></html>

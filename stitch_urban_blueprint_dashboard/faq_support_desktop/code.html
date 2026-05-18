@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .blueprint-bg {
+            background-image: radial-gradient(circle, #0047ab 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.05;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#dae2ff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "tertiary-container": "#4b4d4e",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary-container": "#bdbebe",
+                    "on-surface": "#1a1c1c",
+                    "secondary-container": "#e4e2e1",
+                    "surface-dim": "#dadada",
+                    "primary-container": "#0047ab",
+                    "on-surface-variant": "#434653",
+                    "surface-tint": "#2559bd",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-container": "#656464",
+                    "on-primary-fixed-variant": "#00419e",
+                    "on-secondary-fixed-variant": "#474747",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "on-primary-fixed": "#001946",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "outline": "#737784",
+                    "error": "#ba1a1a",
+                    "tertiary": "#353737",
+                    "primary": "#00327d",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b1c5ff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary-fixed": "#e4e2e1",
+                    "background": "#f9f9f9",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "primary-fixed-dim": "#b1c5ff",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "outline-variant": "#c3c6d5",
+                    "on-primary-container": "#a5bdff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "base": "4px",
+                    "md": "24px",
+                    "grid-gutter": "16px",
+                    "sm": "16px",
+                    "border-hairline": "1px",
+                    "xs": "8px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "h1": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "h2": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["10px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "data-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-lg": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- NavigationDrawer Shell -->
+<aside class="hidden md:flex flex-col h-full bg-surface dark:bg-surface-dim h-screen w-72 rounded-none border-r border-hairline border-outline dark:border-outline-variant sticky top-0">
+<div class="px-md py-lg border-b border-outline-variant">
+<h2 class="font-h2 text-h2 text-primary">Urban-Blueprint</h2>
+<div class="mt-md flex items-center gap-xs">
+<div class="w-10 h-10 bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps uppercase text-secondary">Lead Architect</p>
+<p class="font-body-md text-on-surface font-bold">Project ID: LDN-082</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-md">
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant px-md py-sm flex items-center gap-sm hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Project Overview
+            </a>
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant px-md py-sm flex items-center gap-sm hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Site Map
+            </a>
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant px-md py-sm flex items-center gap-sm hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Documents
+            </a>
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant px-md py-sm flex items-center gap-sm hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+                Team Chat
+            </a>
+<a class="bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-md py-sm flex items-center gap-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="p-md border-t border-outline-variant">
+<p class="font-label-caps text-label-caps uppercase text-secondary">Status</p>
+<p class="font-data-sm text-primary font-bold">ON SCHEDULE</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 relative overflow-y-auto">
+<div class="blueprint-bg absolute inset-0 -z-10"></div>
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed-dim font-h2 text-h2 tracking-tight w-full top-0 sticky border-b border-hairline border-outline dark:border-outline-variant z-40">
+<div class="flex justify-between items-center px-sm py-base w-full max-w-full h-16">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-h1 text-h1 font-bold text-primary dark:text-primary-fixed uppercase tracking-tighter">Urban-Blueprint</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="hover:bg-surface-container-low p-xs transition-colors"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:bg-surface-container-low p-xs transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<div class="h-8 w-hairline bg-outline-variant mx-xs"></div>
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<section class="max-w-6xl mx-auto p-lg">
+<div class="mb-xl">
+<p class="font-label-caps text-label-caps uppercase text-primary mb-xs">Information Center</p>
+<h1 class="font-h1 text-h1 mb-md">FAQ &amp; Support Terminal</h1>
+<p class="text-on-surface-variant max-w-2xl">Access technical documentation, procedural guidelines, and financial clarification for the LDN-082 development site.</p>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- FAQ Accordions -->
+<div class="col-span-12 lg:col-span-8 space-y-md">
+<!-- Project Timeline Category -->
+<div class="border border-outline">
+<div class="bg-surface-container px-md py-sm border-b border-outline flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<span class="font-h2 text-h2 text-on-surface">Project Timeline</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">3 ARTICLES</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<details class="group">
+<summary class="flex justify-between items-center p-md cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-body-md font-bold">Phase 4 Concrete Pour: Structural Schedule?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant font-body-md border-t border-outline-variant pt-sm">
+                                    The Phase 4 pour is slated for Q3. Weather contingency buffers are integrated into the master schedule. View the <a class="text-primary underline" href="#">Gantt Chart</a> for real-time adjustments based on site telemetry.
+                                </div>
+</details>
+<details class="group">
+<summary class="flex justify-between items-center p-md cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-body-md font-bold">Mitigation strategies for logistics delays?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant font-body-md border-t border-outline-variant pt-sm">
+                                    Logistics delays are handled through our Tier 2 vendor redundancy protocol. If primary delivery fails, automated rerouting from the East Hub is triggered within 4 hours.
+                                </div>
+</details>
+</div>
+</div>
+<!-- Financial Reporting Category -->
+<div class="border border-outline">
+<div class="bg-surface-container px-md py-sm border-b border-outline flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<span class="font-h2 text-h2 text-on-surface">Financial Reporting</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">2 ARTICLES</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<details class="group">
+<summary class="flex justify-between items-center p-md cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-body-md font-bold">Accessing the monthly CapEx audit?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant font-body-md border-t border-outline-variant pt-sm">
+                                    Audits are published on the 5th of each month. High-precision expenditure tracking is available in the 'Finance' tab under the 'Quarterly Reconciliation' section.
+                                </div>
+</details>
+</div>
+</div>
+<!-- Site Access Category -->
+<div class="border border-outline">
+<div class="bg-surface-container px-md py-sm border-b border-outline flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="gate">gate</span>
+<span class="font-h2 text-h2 text-on-surface">Site Access</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">4 ARTICLES</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<details class="group">
+<summary class="flex justify-between items-center p-md cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-body-md font-bold">Biometric ID card synchronization?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant font-body-md border-t border-outline-variant pt-sm">
+                                    ID cards are synchronized via the central Site-Comm relay. If your card is rejected at Perimeter Alpha, please report to the Site Office for a manual override and chip recalibration.
+                                </div>
+</details>
+</div>
+</div>
+</div>
+<!-- Support Sidebar / Form -->
+<div class="col-span-12 lg:col-span-4">
+<div class="sticky top-24 space-y-lg">
+<!-- Contact Card -->
+<div class="bg-on-surface text-surface p-md border border-on-surface">
+<h3 class="font-h2 text-h2 mb-md">Direct Support</h3>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="phone_in_talk">phone_in_talk</span>
+<span class="font-data-lg text-data-lg">+44 (0) 20 7946 0128</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="mail">mail</span>
+<span class="font-data-lg text-data-lg">admin@urbanblueprint.io</span>
+</div>
+</div>
+</div>
+<!-- Ask a Question Form -->
+<div class="border border-outline p-md bg-surface-container-lowest">
+<p class="font-label-caps text-label-caps uppercase text-primary mb-xs">Submit Inquiry</p>
+<h3 class="font-h2 text-h2 mb-md">Ask a Question</h3>
+<form class="space-y-sm">
+<div>
+<label class="font-label-caps text-label-caps uppercase block mb-base">Project Area</label>
+<select class="w-full bg-surface border border-outline px-sm py-xs focus:border-primary focus:ring-0 rounded-none">
+<option>Structural Engineering</option>
+<option>Financial Reporting</option>
+<option>Logistics &amp; Supply Chain</option>
+<option>Site Security</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase block mb-base">Inquiry Reference</label>
+<input class="w-full bg-surface border border-outline px-sm py-xs focus:border-primary focus:ring-0 rounded-none placeholder:text-outline-variant" placeholder="e.g. SLAB-99-REF" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase block mb-base">Technical Details</label>
+<textarea class="w-full bg-surface border border-outline px-sm py-xs focus:border-primary focus:ring-0 rounded-none placeholder:text-outline-variant" placeholder="Describe the specific technical issue..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-sm font-label-caps text-label-caps uppercase tracking-widest hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                                    Transmit Inquiry
+                                </button>
+</form>
+</div>
+<!-- Help Illustration -->
+<div class="border border-outline overflow-hidden h-48 relative">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="A detailed black and white photograph of a modern architectural blueprint spread across a high-end dark wood drafting table. The lighting is focused and dramatic, highlighting the fine white lines of the structural design against the dark paper. Pens and precision measuring tools are neatly aligned beside the plans, evoking a sense of engineering mastery and technical precision in a bright light-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMsWUGImx318maUHYsOvNQhF_BSDCD5KNQ8vKfP8Jl-tVXniwFJciHnwBKBfW24SVpFzBiKKTpgGJfzZIZHYNX8yb2m0muGWyCRpscFtZquktFErRqP2KuoKqdyJYqxQSS7rjrghLqaxwRJkxUM5Ym2nQ0al9H83L-dfrUQ5uD-9jEE_0vmXJUrGP75tDB4ScMUWugoWRXUneTzTbc59t__PP5Y13suXiH9eduZ1Dj6k80K8yOVi3TXq6KnC96CKbxpTm4L1Wq55I"/>
+<div class="absolute inset-0 flex items-center justify-center bg-primary/10">
+<div class="bg-surface p-sm border border-primary text-center">
+<p class="font-label-caps text-label-caps uppercase">System Status</p>
+<p class="font-h2 text-h2 text-primary">OPERATIONAL</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Spacer for Mobile Nav -->
+<div class="h-20 md:hidden"></div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface dark:bg-surface-dim px-xs pb-safe border-t border-hairline border-outline dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="view_in_ar">view_in_ar</span>
+<span class="font-label-caps text-label-caps uppercase">Site Twin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps uppercase">Finance</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-none p-xs border border-primary">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+<span class="font-label-caps text-label-caps uppercase">Reports</span>
+</button>
+</nav>
+</body></html>

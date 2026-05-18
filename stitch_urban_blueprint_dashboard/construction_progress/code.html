@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Urban-Blueprint | Progress Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434653",
+                        "surface-tint": "#2559bd",
+                        "background": "#f9f9f9",
+                        "on-background": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed": "#dae2ff",
+                        "surface-dim": "#dadada",
+                        "outline": "#737784",
+                        "secondary-container": "#e4e2e1",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "primary-container": "#0047ab",
+                        "on-primary-container": "#a5bdff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#bdbebe",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-surface": "#1a1c1c",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-primary-fixed-variant": "#00419e",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary-container": "#4b4d4e",
+                        "tertiary": "#353737",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "outline-variant": "#c3c6d5",
+                        "inverse-primary": "#b1c5ff",
+                        "surface-container": "#eeeeee",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary-fixed": "#001946",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#656464",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary": "#00327d",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "border-hairline": "1px",
+                        "grid-gutter": "16px",
+                        "xs": "8px",
+                        "md": "24px",
+                        "base": "4px",
+                        "xl": "64px",
+                        "sm": "16px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "data-sm": ["JetBrains Mono"],
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "data-lg": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "data-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-caps": ["10px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "data-lg": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .blueprint-grid {
+            background-image: radial-gradient(circle, #0047ab10 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 24px;
+            background: #00327d;
+            border-radius: 0;
+            cursor: pointer;
+            border: 1px solid #737784;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md blueprint-grid min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed-dim w-full top-0 sticky border-b border-hairline border-outline dark:border-outline-variant z-50">
+<div class="flex justify-between items-center px-sm py-base w-full max-w-full">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<h1 class="font-h1 text-h1 font-bold text-primary dark:text-primary-fixed uppercase tracking-tighter">Urban-Blueprint</h1>
+</div>
+<span class="material-symbols-outlined p-xs hover:bg-surface-container-low transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="px-sm mt-sm space-y-md">
+<!-- Live-Site-Cam Section -->
+<section class="relative border border-outline bg-surface-container-lowest overflow-hidden">
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary-container z-10 translate-x-2 translate-y-2"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary-container z-10 -translate-x-2 translate-y-2"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary-container z-10 translate-x-2 -translate-y-2"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary-container z-10 -translate-x-2 -translate-y-2"></div>
+<img alt="Construction Site Live Feed" class="w-full aspect-video object-cover grayscale brightness-90 contrast-125" data-alt="A high-angle architectural view of a massive construction site during the framing phase, captured in a clinical, technical style. The scene is dominated by raw steel structures and concrete foundations under a sharp, high-contrast daylight. The color palette is restricted to structural greys and deep architectural blues, emphasizing precision and engineering rigor. The lighting is harsh, creating long, defined shadows across the grid-like building skeleton." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9-tyayPuX6IIaQgX6AlPsEDiUrwRt0wfw204kcimt-pHfAWSYL696cZ7JL0py8HWL-qmwkAVKfcLUqyrv_lDuIX2JGhE2QndpI70cX2gnOCT1tRIbq3_iNtNqLLtcxnoq4l0lPJpufv4G8oRjA79btNDhOcW_DgJzP2FU_dobvmVhpyPnNmeWGYnVZQ_rY4eXxcgkbekK-Iwd1x9t6Jo8riGa9jh73BBGIZDTc5os_VSFSCUwceOz5NYK4Vffb03wKmpZMArxr6E"/>
+<div class="absolute bottom-0 w-full bg-black/60 backdrop-blur-md px-sm py-xs flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-white uppercase">Live Feed: CAM-04_NORTH</span>
+<span class="font-data-sm text-data-sm text-on-primary-container">ISO 400 | 24FPS | LDN-082</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-data-sm text-data-sm text-white uppercase">Recording</span>
+</div>
+</div>
+</section>
+<!-- Time-Slider Control -->
+<section class="space-y-xs bg-surface border border-outline p-sm">
+<div class="flex justify-between items-end">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase">Project Lifecycle</h3>
+<span class="font-data-lg text-data-lg text-primary">PHASE: FRAMING</span>
+</div>
+<div class="relative pt-md pb-xs">
+<input class="w-full h-border-hairline bg-outline appearance-none cursor-pointer" max="4" min="1" type="range" value="2"/>
+<div class="flex justify-between mt-xs">
+<div class="flex flex-col items-start">
+<div class="w-px h-2 bg-outline"></div>
+<span class="font-label-caps text-label-caps text-secondary mt-base uppercase">Foundation</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-px h-2 bg-primary"></div>
+<span class="font-label-caps text-label-caps text-primary mt-base uppercase">Framing</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-px h-2 bg-outline"></div>
+<span class="font-label-caps text-label-caps text-secondary mt-base uppercase">Exterior</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="w-px h-2 bg-outline"></div>
+<span class="font-label-caps text-label-caps text-secondary mt-base uppercase">Interior</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Investor Alerts -->
+<section class="space-y-xs">
+<div class="flex items-center gap-xs border-l-4 border-error bg-white p-sm border border-outline">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<div class="flex-1">
+<h4 class="font-label-caps text-label-caps text-error uppercase">Critical Milestone Alert</h4>
+<p class="font-body-md text-on-surface text-sm">Concrete Curing Stage delayed by 48h due to humidity levels.</p>
+</div>
+</div>
+<div class="flex items-center gap-xs border-l-4 border-primary-container bg-white p-sm border border-outline">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<h4 class="font-label-caps text-label-caps text-primary-container uppercase">Investor Notification</h4>
+<p class="font-body-md text-on-surface text-sm">Steel delivery for Level 12 verified and on-site.</p>
+</div>
+</div>
+</section>
+<!-- Engineering Status List -->
+<section class="space-y-sm">
+<div class="flex justify-between border-b border-outline pb-base">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Task Schedule</span>
+<span class="font-label-caps text-label-caps text-secondary uppercase">Status</span>
+</div>
+<div class="space-y-base">
+<!-- Task Item: Completed -->
+<div class="flex items-center justify-between p-sm bg-surface border border-outline-variant">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="square" data-weight="fill">square</span>
+<div>
+<p class="font-h2 text-body-md font-semibold text-on-surface">Sub-Grade Waterproofing</p>
+<span class="font-data-sm text-data-sm text-secondary">ID: TS-992 | COMPLETED 05/22</span>
+</div>
+</div>
+<div class="px-xs py-base border border-primary text-primary font-label-caps text-label-caps">
+                        100%
+                    </div>
+</div>
+<!-- Task Item: Active -->
+<div class="flex items-center justify-between p-sm bg-surface border-2 border-primary">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="change_history" data-weight="fill">change_history</span>
+<div>
+<p class="font-h2 text-body-md font-semibold text-on-surface">Structural Steel Framing</p>
+<span class="font-data-sm text-data-sm text-primary">ID: TS-1004 | ACTIVE PHASE</span>
+</div>
+</div>
+<div class="px-xs py-base bg-primary text-white font-label-caps text-label-caps">
+                        ON SCHEDULE
+                    </div>
+</div>
+<!-- Task Item: Delayed -->
+<div class="flex items-center justify-between p-sm bg-surface border border-outline-variant">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-error text-sm mt-1" data-icon="pentagon" data-weight="fill">pentagon</span>
+<div>
+<p class="font-h2 text-body-md font-semibold text-on-surface">HVAC Rough-In (Lvl 1-4)</p>
+<span class="font-data-sm text-data-sm text-secondary">ID: TS-1021 | LOGISTICS QUEUE</span>
+</div>
+</div>
+<div class="px-xs py-base border border-error text-error font-label-caps text-label-caps">
+                        DELAYED
+                    </div>
+</div>
+</div>
+</section>
+</main>
+<!-- NavigationDrawer (Mobile suppressed, using BottomNavBar for main navigation) -->
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface dark:bg-surface-dim px-xs pb-safe border-t border-hairline border-outline dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-none p-xs border border-primary transition-transform duration-100 active:scale-95">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase mt-base">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="view_in_ar">view_in_ar</span>
+<span class="font-label-caps text-label-caps uppercase mt-base">Site Twin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps uppercase mt-base">Finance</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-xs hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+<span class="font-label-caps text-label-caps uppercase mt-base">Reports</span>
+</button>
+</nav>
+<!-- FAB (Suppressed on detail view as per mandate, but added logic for active dashboard context) -->
+<button class="fixed bottom-24 right-sm bg-primary text-white w-14 h-14 flex items-center justify-center shadow-xl border border-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="add_chart">add_chart</span>
+</button>
+</body></html>

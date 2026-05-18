@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#dae2ff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1c1c",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "tertiary-container": "#4b4d4e",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary-container": "#bdbebe",
+                    "on-surface": "#1a1c1c",
+                    "secondary-container": "#e4e2e1",
+                    "surface-dim": "#dadada",
+                    "primary-container": "#0047ab",
+                    "on-surface-variant": "#434653",
+                    "surface-tint": "#2559bd",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-container": "#656464",
+                    "on-primary-fixed-variant": "#00419e",
+                    "on-secondary-fixed-variant": "#474747",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "on-primary-fixed": "#001946",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "outline": "#737784",
+                    "error": "#ba1a1a",
+                    "tertiary": "#353737",
+                    "primary": "#00327d",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b1c5ff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary-fixed": "#e4e2e1",
+                    "background": "#f9f9f9",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "primary-fixed-dim": "#b1c5ff",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "outline-variant": "#c3c6d5",
+                    "on-primary-container": "#a5bdff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "base": "4px",
+                    "md": "24px",
+                    "grid-gutter": "16px",
+                    "sm": "16px",
+                    "border-hairline": "1px",
+                    "xs": "8px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "h1": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "h2": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["10px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "data-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-lg": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .blueprint-pattern {
+            background-image: radial-gradient(circle, #0047ab10 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .viewfinder-corner {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: #0047ab;
+        }
+        .v-tl { top: 8px; left: 8px; border-top-width: 2px; border-left-width: 2px; }
+        .v-tr { top: 8px; right: 8px; border-top-width: 2px; border-right-width: 2px; }
+        .v-bl { bottom: 8px; left: 8px; border-bottom-width: 2px; border-left-width: 2px; }
+        .v-br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<div class="flex h-screen overflow-hidden">
+<!-- NavigationDrawer (Sidebar) -->
+<aside class="flex flex-col h-full bg-surface dark:bg-surface-dim border-r border-hairline border-outline-variant w-72 shrink-0">
+<div class="px-md py-lg">
+<div class="flex items-center gap-xs mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+<h1 class="font-h1 text-h2 font-bold text-primary uppercase tracking-tighter">Urban-Blueprint</h1>
+</div>
+<div class="flex items-center gap-sm mb-xl p-xs border border-outline-variant">
+<div class="w-10 h-10 bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<div>
+<p class="font-h2 text-body-md font-bold leading-tight">Lead Architect</p>
+<p class="font-data-sm text-label-caps text-secondary uppercase">Site ID: LDN-082</p>
+</div>
+</div>
+<nav class="space-y-base">
+<a class="flex items-center gap-sm bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Project Overview</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md">Site Map</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-md">Documents</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-body-md">Team Chat</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-hairline border-outline-variant">
+<p class="font-label-caps text-secondary uppercase mb-xs">System Status</p>
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<p class="font-data-sm text-on-surface">Status: On Schedule</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto blueprint-pattern relative">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-30 flex justify-between items-center px-sm py-base bg-surface border-b border-hairline border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="font-h2 text-h2 tracking-tight text-primary">ADMIN CONTROL PANEL</span>
+<span class="font-data-sm text-secondary border-l border-outline-variant pl-sm">v4.2.0-STABLE</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-low transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-secondary" data-icon="notifications">notifications</span>
+</button>
+<button class="p-xs hover:bg-surface-container-low transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-secondary" data-icon="cloud_upload">cloud_upload</span>
+</button>
+<div class="w-px h-6 bg-outline-variant"></div>
+<span class="font-label-caps text-primary font-bold">PROJECT: SKYLINE_TOWER_C</span>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg grid grid-cols-12 gap-grid-gutter max-w-[1600px] mx-auto">
+<!-- Section 1: User Permissions Management -->
+<section class="col-span-12 lg:col-span-8 bg-surface border border-hairline border-outline-variant">
+<div class="px-md py-sm border-b border-hairline border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-label-caps text-on-surface uppercase">Stakeholder Matrix &amp; Permissions</h2>
+<button class="flex items-center gap-xs font-label-caps text-primary border border-primary px-sm py-base hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[14px]" data-icon="person_add">person_add</span>
+                            ADD MEMBER
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-lowest">
+<th class="text-left font-label-caps text-secondary px-md py-sm border-r border-outline-variant">NAME</th>
+<th class="text-left font-label-caps text-secondary px-md py-sm border-r border-outline-variant">ROLE</th>
+<th class="text-left font-label-caps text-secondary px-md py-sm border-r border-outline-variant">SITE ACCESS</th>
+<th class="text-left font-label-caps text-secondary px-md py-sm">PERMISSIONS</th>
+</tr>
+</thead>
+<tbody class="font-data-sm">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md border-r border-outline-variant font-medium">Marcus Sterling</td>
+<td class="px-md py-md border-r border-outline-variant"><span class="px-xs py-[2px] bg-primary-fixed text-on-primary-fixed uppercase text-[10px] font-bold">Investor</span></td>
+<td class="px-md py-md border-r border-outline-variant">Read-Only Financials</td>
+<td class="px-md py-md flex gap-sm">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer" data-icon="edit">edit</span>
+<span class="material-symbols-outlined text-error hover:opacity-70 cursor-pointer" data-icon="block">block</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md border-r border-outline-variant font-medium">Elena Rodriguez</td>
+<td class="px-md py-md border-r border-outline-variant"><span class="px-xs py-[2px] bg-secondary-fixed text-on-secondary-fixed uppercase text-[10px] font-bold">Architect</span></td>
+<td class="px-md py-md border-r border-outline-variant">Full BIM Edit</td>
+<td class="px-md py-md flex gap-sm">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer" data-icon="edit">edit</span>
+<span class="material-symbols-outlined text-error hover:opacity-70 cursor-pointer" data-icon="block">block</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md border-r border-outline-variant font-medium">Construction Dynamics Ltd</td>
+<td class="px-md py-md border-r border-outline-variant"><span class="px-xs py-[2px] bg-tertiary-fixed text-on-tertiary-fixed uppercase text-[10px] font-bold">Contractor</span></td>
+<td class="px-md py-md border-r border-outline-variant">Cam Feed + Logs</td>
+<td class="px-md py-md flex gap-sm">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer" data-icon="edit">edit</span>
+<span class="material-symbols-outlined text-error hover:opacity-70 cursor-pointer" data-icon="block">block</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section 2: Technical Alerts (Caution Tape Style) -->
+<section class="col-span-12 lg:col-span-4 space-y-md">
+<div class="border-l-4 border-error bg-surface p-md border-y border-r border-hairline border-outline-variant flex gap-sm">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<div>
+<p class="font-label-caps text-error uppercase font-bold">Critical Alert: Cam-04 Offline</p>
+<p class="font-data-sm text-on-surface-variant">North Crane mounting unit signal lost. Maintenance requested.</p>
+</div>
+</div>
+<div class="border-l-4 border-primary bg-surface p-md border-y border-r border-hairline border-outline-variant flex gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<div>
+<p class="font-label-caps text-primary uppercase font-bold">Document Sync Pending</p>
+<p class="font-data-sm text-on-surface-variant">12 Structural Blueprints awaiting validation from Arch-Lead.</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Live Cam Configurations -->
+<section class="col-span-12 bg-surface border border-hairline border-outline-variant">
+<div class="px-md py-sm border-b border-hairline border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-label-caps text-on-surface uppercase">Live-Site Cam Node Configuration</h2>
+<div class="flex gap-xs">
+<button class="p-xs border border-outline-variant bg-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-secondary" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-xs border border-outline-variant bg-surface hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-secondary" data-icon="list">list</span>
+</button>
+</div>
+</div>
+<div class="p-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Cam 01 -->
+<div class="relative group">
+<div class="aspect-video bg-inverse-surface border border-hairline border-outline relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A high-angle professional architectural site photography of a massive construction project with steel girders and cranes under a clear blue morning sky. The visual style is high-contrast and crisp, emphasizing structural lines and engineering precision with a cool, blueprint-inspired aesthetic. Soft sunlight casts long, sharp shadows across the site, highlighting the clean, modern industrial environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC__fq8_3oe3DXQDTbzRocEHYDV5E4mBRF7DkhRSaDCzfgu2inIvqi5mTF2S9UkVpZPUXM5UULUaXzGCXpT8RsmrH0tGyl6MGkK68IVeeamEVP0aO_CIbRWq4t3-afUAcDcMnOurkGGYjPfvaNRbsZaFa7dLAytpCafWnfBhpWRPzHabQ-KXNVo-8C4EHQ1ckYZSZzcIh3l80ob1iYa70CNN4SfAg0xCw9TGpHWguUrwN548d2zk4ee-ezRVw3KgE19ByN6E3ygY-I"/>
+<div class="viewfinder-corner v-tl"></div>
+<div class="viewfinder-corner v-tr"></div>
+<div class="viewfinder-corner v-bl"></div>
+<div class="viewfinder-corner v-br"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-xs flex justify-between items-end">
+<div class="font-data-sm text-white">
+<p class="uppercase font-bold">NODE: CAM-01 (NORTH)</p>
+<p class="text-[10px] opacity-70">40.7128° N, 74.0060° W</p>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="videocam">videocam</span>
+</div>
+</div>
+<div class="mt-xs flex justify-between items-center">
+<p class="font-label-caps text-secondary">SIGNAL: 98%</p>
+<button class="font-data-sm text-primary hover:underline">CONFIGURE</button>
+</div>
+</div>
+<!-- Cam 02 -->
+<div class="relative group">
+<div class="aspect-video bg-inverse-surface border border-hairline border-outline relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A detailed wide shot of an urban construction framework during the golden hour, showing the complex skeletal structure of a future skyscraper. The scene is illuminated by warm, directional light that contrasts with the deep blue architectural tones. The atmosphere is quiet and technical, showcasing the intricate web of scaffolding and reinforcement rods in a highly detailed, professional engineering style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk1Dc8ZhI5oT3nRwochbzJC5H_QAK-ZR8fzIkk6o8MVE1UXYZjJPg95xNc3Q9J9Bum8pwR_WkTZKtAG3FJBEh7UadCdZYiFt49g3SrH-403VGaHcn7b3dZc1QWdVR6gWRMeW7Q_NVpL7WLPzKH0WMdA5IHrNkD9IXTfZ6JTzZp1JwFX8O3UZMJlR5tMd9ltH50ytEy2iPml-kwYAD85RRSOEg2LAJ7wbjhmPbwJWRRs6D2EEmlmL9Rj0vjUcDKMWhV2lpNUb0Dq4Q"/>
+<div class="viewfinder-corner v-tl"></div>
+<div class="viewfinder-corner v-tr"></div>
+<div class="viewfinder-corner v-bl"></div>
+<div class="viewfinder-corner v-br"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-xs flex justify-between items-end">
+<div class="font-data-sm text-white">
+<p class="uppercase font-bold">NODE: CAM-02 (EAST)</p>
+<p class="text-[10px] opacity-70">40.7130° N, 74.0055° W</p>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="videocam">videocam</span>
+</div>
+</div>
+<div class="mt-xs flex justify-between items-center">
+<p class="font-label-caps text-secondary">SIGNAL: 92%</p>
+<button class="font-data-sm text-primary hover:underline">CONFIGURE</button>
+</div>
+</div>
+<!-- Cam 03 -->
+<div class="relative group">
+<div class="aspect-video bg-inverse-surface border border-hairline border-outline relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A sharp, eye-level technical view of heavy construction machinery and concrete foundations at a modern development site. The palette is dominated by neutral greys and whites with striking blue accents, creating a clean, institutional aesthetic. The lighting is even and diffused, highlighting the clean textures of cured concrete and the precise alignment of structural components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6YwosWyDv_PI4f8s56MRWISt5PCTId65dVyUK96rn91RwfwPZDUDbJnXre7_J_ljK2fUPd8f8N8adFAFvVza-kpbEqei9nVp7BgpHaviTpXK9Q4GAqxBVQ64en_3grSjA2qy8C5S01-jTXc8q5PFj8ReChRsklq_3EQ0vuyByknau0s5qfU86N8TxGNRXg1iOi18joKoMmBy6vsm1NsRMUHJKe8yzZAurvJ3F8FfeaI-mag_2epvUNiK09g6-8wUfF9Wb2uMI6tY"/>
+<div class="viewfinder-corner v-tl"></div>
+<div class="viewfinder-corner v-tr"></div>
+<div class="viewfinder-corner v-bl"></div>
+<div class="viewfinder-corner v-br"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-xs flex justify-between items-end">
+<div class="font-data-sm text-white">
+<p class="uppercase font-bold">NODE: CAM-03 (WEST)</p>
+<p class="text-[10px] opacity-70">40.7125° N, 74.0070° W</p>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="videocam">videocam</span>
+</div>
+</div>
+<div class="mt-xs flex justify-between items-center">
+<p class="font-label-caps text-secondary">SIGNAL: 85%</p>
+<button class="font-data-sm text-primary hover:underline">CONFIGURE</button>
+</div>
+</div>
+<!-- Cam Offline State -->
+<div class="relative bg-surface-container-high border border-hairline border-outline flex flex-col items-center justify-center aspect-video group">
+<span class="material-symbols-outlined text-error text-[48px]" data-icon="videocam_off">videocam_off</span>
+<p class="font-label-caps text-error mt-xs">CAM-04 OFFLINE</p>
+<button class="mt-sm font-data-sm bg-error text-on-error px-md py-base hover:opacity-90 active:scale-95 transition-all">REBOOT NODE</button>
+</div>
+</div>
+</section>
+<!-- Section 4: Document Uploads & Revision Control -->
+<section class="col-span-12 bg-surface border border-hairline border-outline-variant">
+<div class="px-md py-sm border-b border-hairline border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-label-caps text-on-surface uppercase">Document Management &amp; Revision Ledger</h2>
+<span class="font-data-sm text-secondary">3 NEW FILES UPLOADED TODAY</span>
+</div>
+<div class="p-md flex flex-col md:flex-row gap-lg">
+<!-- Upload Dropzone -->
+<div class="w-full md:w-1/3 border-2 border-dashed border-outline-variant bg-surface-container-lowest p-xl flex flex-col items-center justify-center text-center hover:border-primary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary mb-sm text-[32px]" data-icon="upload_file">upload_file</span>
+<p class="font-h2 text-body-md font-bold text-on-surface">DRAG BLUEPRINTS HERE</p>
+<p class="font-data-sm text-secondary mt-xs">Accepted: .DWG, .PDF, .RVT, .IFC</p>
+<button class="mt-md font-label-caps border border-primary text-primary px-lg py-sm hover:bg-primary hover:text-on-primary">BROWSE FILES</button>
+</div>
+<!-- Document List -->
+<div class="flex-1 space-y-base">
+<div class="p-sm bg-surface-container-low border border-hairline border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<div>
+<p class="font-data-sm font-bold uppercase">FOUNDATION_V2_FINAL.DWG</p>
+<p class="text-[10px] text-secondary">Uploader: Elena Rodriguez | Size: 42.4 MB | Rev: 04</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="visibility">visibility</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="history">history</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="download">download</span>
+</div>
+</div>
+<div class="p-sm bg-surface-container-low border border-hairline border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<div>
+<p class="font-data-sm font-bold uppercase">HVAC_ZONE_OVERVIEW.PDF</p>
+<p class="text-[10px] text-secondary">Uploader: Marcus Sterling | Size: 1.2 MB | Rev: 01</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="visibility">visibility</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="history">history</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="download">download</span>
+</div>
+</div>
+<div class="p-sm bg-surface-container-low border border-hairline border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<div>
+<p class="font-data-sm font-bold uppercase">STRUCTURAL_LOAD_CALCS_Q3.XLSX</p>
+<p class="text-[10px] text-secondary">Uploader: Lead Architect | Size: 18 KB | Rev: 12</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="visibility">visibility</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="history">history</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary" data-icon="download">download</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Technical Data Viz (Blueprint Style Charts) -->
+<section class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-grid-gutter pb-xl">
+<div class="bg-surface border border-hairline border-outline-variant p-md">
+<p class="font-label-caps text-secondary mb-md">STORAGE UTILIZATION (BIM CLOUD)</p>
+<div class="h-2 bg-surface-container-high relative mb-xs">
+<div class="absolute left-0 top-0 h-full bg-primary" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between font-data-sm">
+<span>650GB USED</span>
+<span class="text-secondary">1TB LIMIT</span>
+</div>
+</div>
+<div class="bg-surface border border-hairline border-outline-variant p-md">
+<p class="font-label-caps text-secondary mb-md">ACTIVE USERS BY ROLE</p>
+<div class="flex gap-base items-end h-16">
+<div class="w-full bg-primary" style="height: 40%;"></div>
+<div class="w-full bg-primary/60" style="height: 80%;"></div>
+<div class="w-full bg-primary/30" style="height: 100%;"></div>
+<div class="w-full bg-primary/10" style="height: 20%;"></div>
+</div>
+<div class="flex justify-between font-label-caps text-[8px] mt-xs text-secondary">
+<span>INV</span>
+<span>ARC</span>
+<span>CON</span>
+<span>SUP</span>
+</div>
+</div>
+<div class="bg-surface border border-hairline border-outline-variant p-md flex flex-col justify-center items-center">
+<p class="font-label-caps text-secondary mb-base">SECURITY CLEARANCE LEVEL</p>
+<div class="text-h1 font-h1 text-primary">LVL 04</div>
+<p class="font-data-sm text-secondary">ENCRYPTED END-TO-END</p>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BottomNavBar for Mobile Responsiveness (only shown on md:hidden) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface border-t border-hairline border-outline-variant px-xs pb-safe">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container p-xs border border-primary">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="view_in_ar">view_in_ar</span>
+<span class="font-label-caps text-label-caps uppercase">Site Twin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps uppercase">Finance</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+<span class="font-label-caps text-label-caps uppercase">Reports</span>
+</button>
+</nav>
+</body></html>

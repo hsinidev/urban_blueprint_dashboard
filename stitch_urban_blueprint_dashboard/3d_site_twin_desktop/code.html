@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Urban-Blueprint | Site Twin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dae2ff",
+            "tertiary-fixed": "#e2e2e2",
+            "on-error-container": "#93000a",
+            "on-background": "#1a1c1c",
+            "surface-container-low": "#f3f3f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#eeeeee",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "surface": "#f9f9f9",
+            "tertiary-fixed-dim": "#c6c6c7",
+            "tertiary-container": "#4b4d4e",
+            "surface-container-highest": "#e2e2e2",
+            "surface-container-high": "#e8e8e8",
+            "on-tertiary-container": "#bdbebe",
+            "on-surface": "#1a1c1c",
+            "secondary-container": "#e4e2e1",
+            "surface-dim": "#dadada",
+            "primary-container": "#0047ab",
+            "on-surface-variant": "#434653",
+            "surface-tint": "#2559bd",
+            "on-tertiary-fixed": "#1a1c1c",
+            "inverse-surface": "#2f3131",
+            "on-secondary-container": "#656464",
+            "on-primary-fixed-variant": "#00419e",
+            "on-secondary-fixed-variant": "#474747",
+            "on-error": "#ffffff",
+            "surface-bright": "#f9f9f9",
+            "on-primary-fixed": "#001946",
+            "secondary": "#5f5e5e",
+            "on-tertiary-fixed-variant": "#454747",
+            "surface-variant": "#e2e2e2",
+            "outline": "#737784",
+            "error": "#ba1a1a",
+            "tertiary": "#353737",
+            "primary": "#00327d",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#b1c5ff",
+            "inverse-on-surface": "#f1f1f1",
+            "secondary-fixed": "#e4e2e1",
+            "background": "#f9f9f9",
+            "on-secondary-fixed": "#1b1c1c",
+            "primary-fixed-dim": "#b1c5ff",
+            "secondary-fixed-dim": "#c8c6c6",
+            "outline-variant": "#c3c6d5",
+            "on-primary-container": "#a5bdff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "xl": "64px",
+            "base": "4px",
+            "md": "24px",
+            "grid-gutter": "16px",
+            "sm": "16px",
+            "border-hairline": "1px",
+            "xs": "8px",
+            "lg": "40px"
+          },
+          "fontFamily": {
+            "h1": ["Inter"],
+            "label-caps": ["JetBrains Mono"],
+            "data-sm": ["JetBrains Mono"],
+            "h2": ["Inter"],
+            "data-lg": ["JetBrains Mono"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-caps": ["10px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+            "data-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+            "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "data-lg": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .viewfinder-corner {
+      width: 24px;
+      height: 24px;
+      border-color: #0047ab;
+      position: absolute;
+    }
+    .viewfinder-tl { top: 16px; left: 16px; border-top: 2px solid; border-left: 2px solid; }
+    .viewfinder-tr { top: 16px; right: 16px; border-top: 2px solid; border-right: 2px solid; }
+    .viewfinder-bl { bottom: 16px; left: 16px; border-bottom: 2px solid; border-left: 2px solid; }
+    .viewfinder-br { bottom: 16px; right: 16px; border-bottom: 2px solid; border-right: 2px solid; }
+    .blueprint-pattern {
+      background-image: radial-gradient(#0047ab15 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden">
+<!-- Top Navigation Shell -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface-dim border-b border-hairline border-outline dark:border-outline-variant z-50">
+<div class="flex justify-between items-center px-sm py-base w-full max-w-full">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-size: 24px;">architecture</span>
+<h1 class="font-h1 text-h1 font-bold text-primary dark:text-primary-fixed uppercase tracking-tighter">Urban-Blueprint</h1>
+</div>
+<div class="hidden md:flex items-center gap-md">
+<nav class="flex gap-sm">
+<button class="font-label-caps text-label-caps uppercase hover:bg-surface-container-low transition-colors px-xs py-base text-secondary dark:text-secondary-fixed">Progress</button>
+<button class="font-label-caps text-label-caps uppercase hover:bg-surface-container-low transition-colors px-xs py-base text-primary dark:text-primary-fixed-dim font-bold">Site Twin</button>
+<button class="font-label-caps text-label-caps uppercase hover:bg-surface-container-low transition-colors px-xs py-base text-secondary dark:text-secondary-fixed">Finance</button>
+<button class="font-label-caps text-label-caps uppercase hover:bg-surface-container-low transition-colors px-xs py-base text-secondary dark:text-secondary-fixed">Reports</button>
+</nav>
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex h-[calc(100vh-56px)] w-full overflow-hidden">
+<!-- Left Navigation Drawer: Technical Legend -->
+<aside class="flex flex-col h-full bg-surface dark:bg-surface-dim border-r border-hairline border-outline dark:border-outline-variant w-72 shrink-0">
+<div class="p-md border-b border-hairline border-outline">
+<div class="flex items-center gap-xs mb-xs">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<div class="font-h2 text-h2 text-primary text-sm leading-tight">Lead Architect</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">Site ID: LDN-082</div>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-xs py-1 inline-block">Status: On Schedule</div>
+</div>
+<nav class="flex-1 py-sm">
+<div class="px-md py-xs font-label-caps text-label-caps text-outline uppercase">Navigation</div>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Project Overview</span>
+</a>
+<a class="flex items-center gap-sm bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-md py-sm" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-body-md">Site Map</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md">Documents</span>
+</a>
+<div class="mt-md px-md py-xs font-label-caps text-label-caps text-outline uppercase">BIM Layers</div>
+<div class="px-md py-sm flex flex-col gap-xs">
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-sm">home_work</span> Structural
+            </span>
+<input checked="" class="form-checkbox h-4 w-4 text-primary border-outline rounded-none focus:ring-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span> Electrical
+            </span>
+<input checked="" class="form-checkbox h-4 w-4 text-primary border-outline rounded-none focus:ring-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-sm">water_drop</span> Plumbing
+            </span>
+<input class="form-checkbox h-4 w-4 text-primary border-outline rounded-none focus:ring-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-sm">hvac</span> HVAC
+            </span>
+<input class="form-checkbox h-4 w-4 text-primary border-outline rounded-none focus:ring-0" type="checkbox"/>
+</label>
+</div>
+</nav>
+<div class="p-md bg-surface-container-low border-t border-hairline border-outline">
+<button class="w-full bg-primary text-on-primary py-sm font-label-caps text-label-caps uppercase tracking-widest border border-primary active:opacity-80 transition-opacity">
+          Export Site Data
+        </button>
+</div>
+</aside>
+<!-- Main Viewport Canvas -->
+<main class="flex-1 relative bg-white blueprint-pattern overflow-hidden">
+<!-- 3D Viewport Placeholder -->
+<div class="absolute inset-0 z-0">
+<img alt="3D Building Information Model" class="w-full h-full object-cover grayscale-[0.5] opacity-90" data-alt="A sophisticated architectural 3D BIM model of a modern skyscraper under construction, rendered in a crisp, high-key technical style. The structure shows intricate steel scaffolding, glass curtain walls, and internal floor plates. The lighting is soft and professional, emphasizing the structural minimalist aesthetic with a clean white and blueprint-blue color palette. Mathematical crosshairs and hairline grid overlays suggest a high-precision engineering tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLxsnAyOGn6RUm8lS5zJyn5BtOdhqellYAoCZbBwHb4zbEM6ndAAhqa1Q0MLSpr2mpQiwpjIXlxDlOWsCVkuRSqN0XHuT66ROj3f6j8yoVP5ZsUGjVfOnHjoJlKaHJaIStuQJ5Bb5pM4XkH67hsHNuCRc_ATMf8U9nyCgnKLf0yFgVlnIe_QYZprn9-zd0F0ELafdq1jQXullYwktxyNKD4jvo8gGUo45QxteCOAETE6T0gXGGfZDFdf0uPMk5jcK-3uakV2I8o3o"/>
+<!-- Viewfinder Brackets -->
+<div class="viewfinder-corner viewfinder-tl"></div>
+<div class="viewfinder-corner viewfinder-tr"></div>
+<div class="viewfinder-corner viewfinder-bl"></div>
+<div class="viewfinder-corner viewfinder-br"></div>
+</div>
+<!-- Integrated Comment Bubbles (3D Coordinates) -->
+<div class="absolute top-[30%] left-[45%] z-10">
+<div class="relative group">
+<div class="w-4 h-4 bg-error border border-white rounded-full flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<div class="w-1 h-1 bg-white rounded-full"></div>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white border border-outline p-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<div class="font-label-caps text-[8px] text-error mb-1 uppercase">Structural Alert // #004-B</div>
+<div class="font-body-md text-sm leading-tight text-on-surface">Cantilever stress exceeds tolerance on Floor 12. Review required.</div>
+<div class="mt-2 flex justify-between items-center">
+<span class="font-data-sm text-[10px] text-outline">J. Smith • 2h ago</span>
+<span class="font-label-caps text-[10px] text-primary">View Details</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-[60%] left-[65%] z-10">
+<div class="relative group">
+<div class="w-4 h-4 bg-primary border border-white rounded-full flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<div class="w-1 h-1 bg-white rounded-full"></div>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white border border-outline p-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<div class="font-label-caps text-[8px] text-primary mb-1 uppercase">Comment // #012-A</div>
+<div class="font-body-md text-sm leading-tight text-on-surface">Electrical conduit rerouting confirmed for south-west quadrant.</div>
+<div class="mt-2 flex justify-between items-center">
+<span class="font-data-sm text-[10px] text-outline">M. Chen • 5h ago</span>
+<span class="font-label-caps text-[10px] text-primary">Resolved</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Viewport Overlay HUD -->
+<div class="absolute top-md right-md flex flex-col gap-xs z-20">
+<div class="bg-surface/80 backdrop-blur-md border border-outline p-xs flex flex-col gap-base">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white transition-colors border border-transparent hover:border-outline">
+<span class="material-symbols-outlined text-on-surface">zoom_in</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white transition-colors border border-transparent hover:border-outline">
+<span class="material-symbols-outlined text-on-surface">zoom_out</span>
+</button>
+<div class="h-px bg-outline mx-xs opacity-30"></div>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white transition-colors border border-transparent hover:border-outline">
+<span class="material-symbols-outlined text-on-surface">3d_rotation</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white transition-colors border border-transparent hover:border-outline">
+<span class="material-symbols-outlined text-on-surface">photo_camera</span>
+</button>
+</div>
+</div>
+<!-- Metadata Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm text-white px-md py-base flex justify-between items-center z-20 border-t border-outline/30">
+<div class="font-label-caps text-xs flex gap-md">
+<span class="text-primary-fixed">LAT: 51.5074° N</span>
+<span class="text-primary-fixed">LNG: 0.1278° W</span>
+<span>ELV: 42.5m</span>
+</div>
+<div class="font-data-sm text-xs opacity-80 uppercase flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> Oct 24, 2023 // 14:32:01 GMT
+        </div>
+<div class="font-data-sm text-xs flex items-center gap-sm">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">cloud</span> 18°C</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">air</span> 4.2m/s</span>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Site Metrics -->
+<aside class="w-80 bg-surface dark:bg-surface-dim border-l border-hairline border-outline dark:border-outline-variant flex flex-col shrink-0 overflow-y-auto">
+<div class="p-md border-b border-hairline border-outline">
+<h3 class="font-label-caps text-label-caps text-outline uppercase mb-md">Site Metrics</h3>
+<!-- Metric Card 1 -->
+<div class="mb-md">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-body-md text-sm text-on-surface-variant">Structural Load</span>
+<span class="font-data-lg text-data-lg text-primary">82%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="mb-md">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-body-md text-sm text-on-surface-variant">Material Efficiency</span>
+<span class="font-data-lg text-data-lg text-primary">94.8%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-primary" style="width: 94.8%"></div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div>
+<div class="flex justify-between items-end mb-xs">
+<span class="font-body-md text-sm text-on-surface-variant">Energy consumption</span>
+<span class="font-data-lg text-data-lg text-secondary">42kW/h</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-primary"></div>
+<div class="h-1 flex-1 bg-surface-container-highest"></div>
+<div class="h-1 flex-1 bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<div class="p-md border-b border-hairline border-outline">
+<h3 class="font-label-caps text-label-caps text-outline uppercase mb-md">Active Alerts</h3>
+<div class="space-y-sm">
+<div class="border-l-4 border-error bg-white p-sm border border-outline/30 flex items-start gap-sm">
+<span class="material-symbols-outlined text-error" style="font-size: 18px;">warning</span>
+<div>
+<div class="font-label-caps text-[10px] text-error uppercase">Critical // Concrete Pour</div>
+<p class="font-body-md text-xs leading-snug mt-1">Temperature drop on sector 7B may affect curing integrity.</p>
+</div>
+</div>
+<div class="border-l-4 border-primary bg-white p-sm border border-outline/30 flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 18px;">info</span>
+<div>
+<div class="font-label-caps text-[10px] text-primary uppercase">Notice // Supply Chain</div>
+<p class="font-body-md text-xs leading-snug mt-1">HVAC units arrival delayed by 24h. Logistics updated.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-md flex-1">
+<h3 class="font-label-caps text-label-caps text-outline uppercase mb-md">Drafting Timeline</h3>
+<div class="relative pl-xs border-l border-outline/30 flex flex-col gap-md">
+<div class="relative">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-primary rounded-none border-2 border-surface"></div>
+<div class="font-label-caps text-[10px] text-primary">Today - 10:00</div>
+<div class="font-body-md text-sm">Site Twin Update v4.2</div>
+</div>
+<div class="relative opacity-60">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-outline rounded-none border-2 border-surface"></div>
+<div class="font-label-caps text-[10px]">Yesterday</div>
+<div class="font-body-md text-sm">Plumbing Layer Integrated</div>
+</div>
+<div class="relative opacity-60">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-outline rounded-none border-2 border-surface"></div>
+<div class="font-label-caps text-[10px]">Oct 22</div>
+<div class="font-body-md text-sm">Initial MEP Scaffolding</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Hidden Bottom Nav for responsiveness check -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex md:hidden justify-around items-center h-16 bg-surface dark:bg-surface-dim px-xs pb-safe border-t border-hairline border-outline">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container p-xs border border-primary">
+<span class="material-symbols-outlined">view_in_ar</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Site Twin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Finance</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-xs">
+<span class="material-symbols-outlined">videocam</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Reports</span>
+</button>
+</nav>
+</body></html>
